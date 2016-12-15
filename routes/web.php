@@ -11,6 +11,15 @@
 |
 */
 
+Route::get('/empresa',function(){
+   return view('empresa');
+})->name('rota.empresa');
+
+Route::get('/contato',function(){
+    return 'contato';
+})->name('rota.contato');
+
 Route::get('/', function () {
-    return view('welcome');
+    #return view('welcome');
+    return redirect()->route('rota.empresa');
 });
