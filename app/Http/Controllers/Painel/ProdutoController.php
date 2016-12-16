@@ -9,15 +9,22 @@ use Illuminate\Support\Facades\App;
 
 class ProdutoController extends Controller
 {
+    private $product;
+
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Product $product)
+    public function index()
     {
-        $products = $product->all();
-        return view('painel.products.index',compact('products'));
+        $products = $this->product->all();
+        return view('painel.products.index', compact('products'));
     }
 
     /**
@@ -33,7 +40,7 @@ class ProdutoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,7 +51,7 @@ class ProdutoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,7 +62,7 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -66,8 +73,8 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -78,11 +85,37 @@ class ProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
+    }
+
+    public function tests()
+    {
+        /*
+        $prod = $this->product;
+        $prod->name = "PRODUTO 2";
+        $prod->number = 123123;
+        $prod->active = true;
+        $prod->category = 'eletronicos';
+        $prod->description = 'Descricao do produto 2';
+        $save = $prod->save();
+        */
+
+        $save = $this->product->create([
+            'name'        => "PRODUTO 4",
+            'number'      => 545467,
+            'active'      => true,
+            'category'    => 'banho',
+            'description' => 'Descricao do produto 4',
+        ]);
+
+        if (!$save) {
+            return "Não foi possível salvar o produto";
+        }
+        return "Salvo com sucesso: {$save->id}";
     }
 }
