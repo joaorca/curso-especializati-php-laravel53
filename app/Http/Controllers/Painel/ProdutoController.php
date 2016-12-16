@@ -105,8 +105,40 @@ class ProdutoController extends Controller
         $save = $prod->save();
         */
 
+        /*
         $save = $this->product->create([
             'name'        => "PRODUTO 4",
+            'number'      => 545467,
+            'active'      => true,
+            'category'    => 'banho',
+            'description' => 'Descricao do produto 4',
+        ]);
+        */
+
+        /*
+        $prod = $this->product->find(5);
+        $prod->name = "PRODUTO 2 ALTERADO";
+        $prod->number = 12334235123;
+        $prod->active = true;
+        $prod->category = 'eletronicos';
+        $prod->description = 'UPDate Descricao do produto 5';
+        $save = $prod->save();
+        */
+
+        /*
+        $prod = $this->product->find(5);
+        $save = $prod->update([
+            'name'        => "PRODUTO 5 Aletado de noovo",
+            'number'      => 545467,
+            'active'      => true,
+            'category'    => 'banho',
+            'description' => 'Descricao do produto 4',
+        ]);
+        */
+
+        $prod = $this->product->where('number',545467);
+        $save = $prod->update([
+            'name'        => "PRODUTO 5 Aletado de noovo",
             'number'      => 545467,
             'active'      => true,
             'category'    => 'banho',
@@ -116,6 +148,6 @@ class ProdutoController extends Controller
         if (!$save) {
             return "Não foi possível salvar o produto";
         }
-        return "Salvo com sucesso: {$save->id}";
+        return "Salvo com sucesso";
     }
 }
