@@ -17,3 +17,4 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/categoria/{id}', 'SiteController@categoria');
 });
 
+Route::resource('/painel/produtos', 'Painel\ProdutoController@index');

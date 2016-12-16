@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware('auth');
+        //$this->middleware('auth')->only(['contato', 'categoria']);
+        //$this->middleware('auth')->except(['index']);
+    }
+
     public function index()
     {
         return 'INDEX';
